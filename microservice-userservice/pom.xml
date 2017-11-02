@@ -7,6 +7,11 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>microservice-userservice</artifactId>
+	<properties>
+		<!--  配置镜像前缀（就是仓库服务地址） -->
+		<docker.image.prefix>192.168.197.143:5000</docker.image.prefix>
+	</properties>
+
 	<dependencies>
 		<!-- MyBatis启动器 -->
 		<dependency>
@@ -41,4 +46,33 @@
 			<version>2.2.2</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<!-- dockerfile plugin -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.3.6</version>
+				<configuration>
+					<!-- 生成的镜像仓库名称 -->
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+					<!-- 生成的镜像版本 -->
+					<tag>${project.version}</tag>
+					<!-- 推送到私有镜像仓库时需要开启安全认证 -->
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+				</configuration>
+				<!-- 直接使用mvn install命令打包项目，就会自动构建镜像和推送镜像 -->
+				<executions>
+					<execution>
+						<id>default</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
