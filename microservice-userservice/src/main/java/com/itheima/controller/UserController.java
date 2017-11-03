@@ -34,7 +34,7 @@ public class UserController {
 	private String ORDERSERVICEURL;
 
 	@GetMapping(path="/findOrders/{username}")
-	@HystrixCommand(fallbackMethod = "getUserByNamefallback") //断路器
+//	@HystrixCommand(fallbackMethod = "getUserByNamefallback") //断路器
 	public List<Order> getOrderByUsername(@PathVariable("username")
 												String username) {
 		ResponseEntity<List<Order>> rateResponse = null;
@@ -53,8 +53,8 @@ public class UserController {
 		return orders;
 	}
 	//针对上面断路器发现的问题编写fallback方法（参数和返回值要一样）
-	public List<Order> getUserByNamefallback(String name) {
-		List<Order> orders =new ArrayList<>();
-		return orders;
-	}
+//	public List<Order> getUserByNamefallback(String name) {
+//		List<Order> orders =new ArrayList<>();
+//		return orders;
+//	}
 }
