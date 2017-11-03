@@ -9,7 +9,7 @@
 	<artifactId>microservice-orderservice</artifactId>
 	<properties>
 		<!--  配置镜像前缀（就是仓库服务地址） -->
-		<docker.image.prefix>192.168.197.143:5000</docker.image.prefix>
+		<docker.image.prefix>192.168.197.147:5000</docker.image.prefix>
 	</properties>
 	<dependencies>
 		<!-- MyBatis启动器 -->
