@@ -9,9 +9,15 @@ spring:
     password: root
   application:
       name: user-service # 指定应用名称
+  cloud:
+      inetutils:
+        preferred-networks:
+        - 10.0   # 设置注册到Eureka中心的优选服务地址
 server:
   port: 8030 # 指定该Eureka实例的端口号
 eureka:
+  instance:
+          prefer-ip-address: true  #优选通过IP地址找到对应的服务名称
   client:
     service-url:
 #      defaultZone: http://localhost:8761/eureka/  #配置eureka注册中心地址
