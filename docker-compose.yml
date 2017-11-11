@@ -7,8 +7,8 @@ services:
       - 3306:3306
     volumes:
       - microservice-mysql:/var/lib/mysql
-    networks:
-      - microservice-net
+#    networks:
+#      - microservice-net
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: microservice_mallmanagement
@@ -24,8 +24,8 @@ services:
     restart: on-failure
     ports:
       - 8761:8761
-    networks:
-      - microservice-net
+#    networks:
+#      - microservice-net
     deploy:
       replicas: 1
       restart_policy:
@@ -36,8 +36,8 @@ services:
     restart: on-failure
     ports:
       - 8050:8050
-    networks:
-      - microservice-net
+#    networks:
+#      - microservice-net
     depends_on:
       - eureka-server
     deploy:
@@ -52,8 +52,8 @@ services:
     restart: on-failure
     ports:
       - 7900:7900
-    networks:
-      - microservice-net
+#    networks:
+#      - microservice-net
     depends_on:
       - mysql
       - eureka-server
@@ -67,8 +67,8 @@ services:
     restart: on-failure
     ports:
       - 8030:8030
-    networks:
-      - microservice-net
+#    networks:
+#      - microservice-net
     depends_on:
       - mysql
       - eureka-server
@@ -86,10 +86,14 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
-    networks:
-      - microservice-net
+#    networks:
+#      - microservice-net
 
 networks:
-  microservice-net:
+  default:
+    external:
+      name: microservice_net
+#networks:
+#  microservice-net:
 volumes:
   microservice-mysql:
