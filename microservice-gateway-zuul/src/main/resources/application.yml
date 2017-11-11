@@ -20,6 +20,15 @@ eureka:
 #      defaultZone: http://localhost:8761/eureka/
 #      上线测试需要使用以下配置
       defaultZone: http://eureka-server:8761/eureka/
+
+#设置Hystrix熔断器判定超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
 zuul:
   ignoredServices: '*'
   routes:
