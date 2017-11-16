@@ -28,6 +28,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
+		<!-- 断路器：Hystrix客户端依赖 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+		</dependency>
 		<!-- Use Swagger UI for REST API test -->
 		<dependency>
 			<groupId>io.springfox</groupId>

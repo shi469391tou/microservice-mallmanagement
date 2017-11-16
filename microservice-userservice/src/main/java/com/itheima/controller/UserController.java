@@ -3,7 +3,6 @@ package com.itheima.controller;
 import com.itheima.mapper.UserMapper;
 import com.itheima.po.Order;
 import com.itheima.po.User;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,7 +27,6 @@ public class UserController {
 	private String ORDERSERVICEURL;
 
 	@GetMapping(path="/findOrders/{username}")
-	@HystrixCommand(fallbackMethod = "getUserByNamefallback") //断路器
 	public List<Order> getOrderByUsername(@PathVariable("username")
 												String username) {
 		User user = this.userMapper.selectUser(username);
@@ -40,11 +37,6 @@ public class UserController {
 					HttpMethod.GET, null, 
 					new ParameterizedTypeReference<List<Order>>(){});
 		List<Order> orders = rateResponse.getBody();
-		return orders;
-	}
-	//针对上面断路器发现的问题编写回调方法（参数和返回值要一样）
-	public List<Order> getUserByNamefallback(String name) {
-		List<Order> orders =new ArrayList<>();
 		return orders;
 	}
 }
