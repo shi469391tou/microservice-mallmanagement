@@ -18,7 +18,7 @@ services:
         constraints: [node.role == manager]
 
   eureka-server:
-    image: 192.168.197.143:5000/microservice-eureka-server:0.0.1-SNAPSHOT
+    image: 192.168.2.120:5000/microservice-eureka-server:0.0.1-SNAPSHOT
     restart: on-failure
     ports:
       - 8761:8761
@@ -28,7 +28,7 @@ services:
         condition: on-failure
 
   gateway-zuul:
-    image: 192.168.197.143:5000/microservice-gateway-zuul:0.0.1-SNAPSHOT
+    image: 192.168.2.120:5000/microservice-gateway-zuul:0.0.1-SNAPSHOT
     restart: on-failure
     ports:
       - 8050:8050
@@ -42,7 +42,7 @@ services:
         constraints: [node.role == manager]
 
   order-service:
-    image: 192.168.197.143:5000/microservice-orderservice:0.0.1-SNAPSHOT
+    image: 192.168.2.120:5000/microservice-orderservice:0.0.1-SNAPSHOT
     restart: on-failure
     ports:
       - 7900:7900
@@ -55,7 +55,7 @@ services:
         condition: on-failure
 
   user-service:
-    image: 192.168.197.143:5000/microservice-userservice:0.0.1-SNAPSHOT
+    image: 192.168.2.120:5000/microservice-userservice:0.0.1-SNAPSHOT
     restart: on-failure
     ports:
       - 8030:8030
